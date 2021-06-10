@@ -4,14 +4,12 @@ from pymongo.encryption import Algorithm
 import requests
 from datetime import (datetime, timedelta)
 import jwt
+import re
 
 from bs4 import BeautifulSoup
 from flask_bcrypt import Bcrypt
 from pymongo import MongoClient
 from flask import Flask, render_template, jsonify, request, redirect
-
-
-
 
 client = MongoClient('localhost', 27017)
 db = client.mini_project
@@ -27,12 +25,14 @@ def index():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         user_info = db.user.find_one({"username": payload['id']})
-        return render_template("index.html")
+        doc = {
+            "username": payload['id']
+        }
+        return render_template("index.html", username=doc)
     except jwt.ExpiredSignatureError:
         return redirect("/auth/login")
     except jwt.exceptions.DecodeError:
         return redirect("/auth/login")
-
 
 @app.route("/auth/login", methods=["POST", "GET"])
 def login():
@@ -76,6 +76,18 @@ def signup():
         password_receive = request.form['password_give']
         password2_receive = request.form['password2_give']
 
+        regex = '^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
+        
+        if re.search(regex, email_receive) is None:
+            return jsonify({'result': "fail", "msg": "이메일 형식을 확인하세요."})
+
+        existing_username = db.users.find_one({"username":username_receive})
+        existing_email = db.users.find_one({"email": email_receive})
+        if existing_username is not None:
+            return jsonify({'result': "fail", "msg": "이미 존재하는 아이디 입니다."})
+        if existing_email is not None:
+            return jsonify({'result': "fail", "msg": "이미 존재하는 이메일 입니다."})
+
         if (password_receive == password2_receive):
             hashed_password = bcrypt.generate_password_hash(password_receive, 10).decode("utf-8")
             
@@ -87,8 +99,8 @@ def signup():
             
             db.users.insert_one(doc)
             return jsonify({'result': "success", "msg": "회원가입 성공."})
-    else:
-        return jsonify({'result': "fail", "msg": "비밀번호가 일치하지 않습니다."})
+        else:
+            return jsonify({'result': "fail", "msg": "비밀번호가 일치하지 않습니다."})
 
 @app.route("/movie/list", methods=["GET"])
 def get_movies():
@@ -109,13 +121,13 @@ def movie_detail(movie_id):
     if token_receive is None:
         return redirect("/")
 
-
+    count =   db.likes.count_documents({"movie_id": movie_id, "action": "like"})
     movie = db.movie_details.find_one({'movie_id': int(movie_id)}, {"_id": False})
     reviews = db.comments.find({'movie_id': movie_id})
     
 
     if movie is not None:
-        return render_template("detail.html", movie=movie, reviews=reviews)
+        return render_template("detail.html", movie=movie, reviews=reviews, count=count)
 
 
 @app.route("/movie/<movie_id>/comment", methods=["POST"])
@@ -140,10 +152,54 @@ def comment(movie_id):
         db.comments.insert_one(doc)
         return jsonify({"result": "success", "msg": "댓글를 추가했습니다."})
 
-@app.route("/movie/1/like")
-def like():
+@app.route("/movie/<movie_id>/comment/delete", methods=["POST"])
+def del_comment(movie_id):
+    if request.method == "POST":
 
-    pass
+        token_receive = request.cookies.get("mytoken")
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        username = (payload["id"])
+
+        comment_receive = request.form["comment_give"]
+        target_comment = db.comments.find_one({"user_id": username, "movie_id": movie_id, "comment": comment_receive})
+        
+      
+        if target_comment is not None:
+            db.comments.delete_one({"user_id": username, "movie_id": movie_id, "comment": comment_receive})
+            
+            return jsonify({"result": "success", "msg": "댓글 삭제"})
+        else:
+            return jsonify({"result": "fail", "msg": "다른 사람의 댓글은 삭제할 수 없습니다."})
+
+@app.route("/movie/<movie_id>/like", methods=["POST"])
+def like(movie_id):
+    token_receive = request.cookies.get("mytoken")
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    username = db.users.find_one({"username": payload["id"]})
+    
+    action_receive = request.form["action_give"]
+    
+
+    if action_receive =="like":
+        doc ={
+        "user_id": username["username"], 
+        "movie_id": movie_id,
+        "action": action_receive
+        }
+        db.likes.insert_one(doc)
+        count = db.likes.count_documents({"movie_id": movie_id, "action": "like"})
+        
+        return jsonify({"result": "liked", "count": count})
+    elif action_receive =="unlike":
+        doc ={
+        "user_id": username["username"], 
+        "movie_id": movie_id,
+        "action": "like"
+        }
+        db.likes.delete_one(doc)
+        count = db.likes.count_documents({"movie_id": movie_id, "action": "like"})
+        
+        return jsonify({"result": "unliked", "count":count})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
