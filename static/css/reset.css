@@ -137,7 +137,7 @@ a {
     color: inherit;
 }
 
-input:focus {
+input:focus, textarea:focus, button:focus {
     outline: none;
 }
 

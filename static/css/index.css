@@ -1,17 +1,18 @@
 @font-face {
-    font-family: 'SEBANG_Gothic_Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff') format('woff');
+    font-family: "SEBANG_Gothic_Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+        format("woff");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+        format("woff");
     font-weight: normal;
     font-style: normal;
 }
-
 
 .splash {
     position: fixed;
@@ -31,7 +32,6 @@
 
 @keyframes hideSplash {
     0% {
-
     }
     99% {
         opacity: 1;
@@ -40,9 +40,7 @@
         visibility: hidden;
         opacity: 0;
     }
-
 }
-
 
 .splash .logo {
     width: 25%;
@@ -53,14 +51,13 @@
 @keyframes flyingPlane {
     50% {
         transform: translateX(0) translateY(0%);
-
     }
     100% {
-        filter: invert(81%) sepia(46%) saturate(3745%) hue-rotate(354deg) brightness(104%) contrast(101%);
+        filter: invert(81%) sepia(46%) saturate(3745%) hue-rotate(354deg)
+            brightness(104%) contrast(101%);
         transform: translateX(100%) translateY(-100%);
     }
 }
-
 
 .splash .title {
     font-size: 4rem;
@@ -71,17 +68,16 @@
 }
 
 .index__container {
-    padding:5px;
-    font-family: 'GmarketSansMedium';
+    padding: 5px;
+    font-family: "GmarketSansMedium";
     width: 350px;
     margin: auto;
     display: block;
-
 }
 
 /*헤더 로고영역*/
 .navbar {
-    font-family: 'SEBANG_Gothic_Bold';
+    font-family: "SEBANG_Gothic_Bold";
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -98,7 +94,6 @@
     cursor: pointer;
 }
 
-
 .navbar__logo svg {
     width: 30px;
     height: 100%;
@@ -111,7 +106,6 @@
     letter-spacing: -2px;
 }
 
-
 .navbar__title span {
     color: var(--gray);
 }
@@ -123,38 +117,29 @@
 }
 
 .navbar__control .logout {
-    display: block;
+    display: flex;
     height: 100%;
     border-radius: 10px;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     cursor: pointer;
+    align-items: flex-end;
 }
 
 .navbar__control .logout:hover {
     color: var(--gray);
 }
 
-.navbar__control .logout span {
-    line-height: 50px;
-}
-
-
 /*greeting 영역*/
 .greeting {
     margin: 20px 0;
     font-weight: 500;
-    font-size: .7rem;
+    font-size: 0.8rem;
     line-height: 1.5;
 }
 
 .greeting .greeting__text {
     font-weight: 700;
-    font-size: 1rem;
-
-}
-
-.greeting .greeting__text:hover {
-
+    font-size: 1.25rem;
 }
 
 /*컨텐츠 영역*/
@@ -168,17 +153,17 @@ main.contents-container {
 }
 
 .card .card-title {
-    font-size: 1.4rem;
     margin: 10px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .card .card-body {
-    font-size: .75rem;
+    font-size: 0.75rem;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     margin-bottom: 30px;
-
 }
 
 .card .card-body .card-info {
@@ -186,6 +171,9 @@ main.contents-container {
     flex-direction: column;
 }
 
+.card .card-body .card-info span {
+    margin: 2px 0;
+}
 
 .card .card-body .card-genre {
 }
@@ -225,7 +213,6 @@ main.contents-container {
 .card .card-body .btn:hover {
     background-color: var(--green);
     color: #fff;
-    border-bottom: 4px solid hsl(var(--green), 10%);
 }
 
 .card .card-body .btn:hover:before {
@@ -233,30 +220,29 @@ main.contents-container {
     transition: all 0.5s ease-in-out;
 }
 
-
 @media (min-width: 501px) {
-    .splash{
-    flex-direction: row;
+    .splash {
+        flex-direction: row;
     }
 
-    .splash .logo{
+    .splash .logo {
         height: 25%;
     }
 
     .splash .title {
-    font-size: 5rem;
-}
+        font-size: 5rem;
+    }
     .index__container {
         width: 500px;
     }
     .card .card-img-top {
-            height: 345px;
+        height: 345px;
         object-fit: cover;
     }
 
     main.contents-container {
         grid-template-columns: repeat(2, 1fr);
-                gap:10px;
+        gap: 10px;
     }
 }
 
@@ -264,7 +250,7 @@ main.contents-container {
     .index__container {
         width: 1000px;
     }
-        main.contents-container {
+    main.contents-container {
         grid-template-columns: repeat(4, 1fr);
     }
 }

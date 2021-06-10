@@ -1,100 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Login form test</title>
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login form test</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link
             href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap"
             rel="stylesheet"
-        />
-        <link
+    />
+    <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous"
-        />
-        <script
+    />
+    <link rel="stylesheet" href="../static/css/reset.css"/>
+    <link rel="stylesheet" href="../static/css/style.css"/>
+    <script
             src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"
-        ></script>
-        <script
+    ></script>
+    <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"
-        ></script>
-        <script
+    ></script>
+    <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"
-        ></script>
+    ></script>
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script
             type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
-        ></script>
+    ></script>
 
-        <!-- main css & js file link -->
-        <link rel="stylesheet" href="/static/css/auth.css" />
-    </head>
-    <body>
-        <script type="text/javascript" src="/static/js/main.js"></script>
-        <div class="container">
-            <div class="row project-title-container">
-                <div class="col project-title">
-                    <h1 class="project-title">Movie 26</h1>
-                </div>
-                <div class="col-4">
-                    <div class="login-div">
-                        <div class="logo"></div>
-                        <div class="title">Hello 👋</div>
-                        <div class="sub-title">welcome, movie 26</div>
-                        <div class="fields">
-                            <div class="username">
-                                <svg class="svg-icon" viewBox="0 0 20 20">
-                                    <path
-                                        d="M12.075,10.812c1.358-0.853,2.242-2.507,2.242-4.037c0-2.181-1.795-4.618-4.198-4.618S5.921,4.594,5.921,6.775c0,1.53,0.884,3.185,2.242,4.037c-3.222,0.865-5.6,3.807-5.6,7.298c0,0.23,0.189,0.42,0.42,0.42h14.273c0.23,0,0.42-0.189,0.42-0.42C17.676,14.619,15.297,11.677,12.075,10.812 M6.761,6.775c0-2.162,1.773-3.778,3.358-3.778s3.359,1.616,3.359,3.778c0,2.162-1.774,3.778-3.359,3.778S6.761,8.937,6.761,6.775 M3.415,17.69c0.218-3.51,3.142-6.297,6.704-6.297c3.562,0,6.486,2.787,6.705,6.297H3.415z"
-                                    ></path>
-                                </svg>
-                                <input
-                                    id="input-username"
-                                    type="text"
-                                    class="user-input"
-                                    placeholder="아이디"
-                                    name="username"
-                                    required
-                                />
-                            </div>
-                            <div class="password">
-                                <svg class="svg-icon" viewBox="0 0 20 20">
-                                    <path
-                                        d="M17.308,7.564h-1.993c0-2.929-2.385-5.314-5.314-5.314S4.686,4.635,4.686,7.564H2.693c-0.244,0-0.443,0.2-0.443,0.443v9.3c0,0.243,0.199,0.442,0.443,0.442h14.615c0.243,0,0.442-0.199,0.442-0.442v-9.3C17.75,7.764,17.551,7.564,17.308,7.564 M10,3.136c2.442,0,4.43,1.986,4.43,4.428H5.571C5.571,5.122,7.558,3.136,10,3.136 M16.865,16.864H3.136V8.45h13.729V16.864z M10,10.664c-0.854,0-1.55,0.696-1.55,1.551c0,0.699,0.467,1.292,1.107,1.485v0.95c0,0.243,0.2,0.442,0.443,0.442s0.443-0.199,0.443-0.442V13.7c0.64-0.193,1.106-0.786,1.106-1.485C11.55,11.36,10.854,10.664,10,10.664 M10,12.878c-0.366,0-0.664-0.298-0.664-0.663c0-0.366,0.298-0.665,0.664-0.665c0.365,0,0.664,0.299,0.664,0.665C10.664,12.58,10.365,12.878,10,12.878"
-                                    ></path>
-                                </svg>
-                                <input
-                                    id="input-password"
-                                    type="password"
-                                    name="password"
-                                    class="pass-input"
-                                    placeholder="비밀번호"
-                                    required
-                                />
-                            </div>
-                            <button onclick="log_in()" class="login-button">
-                                로그인
-                            </button>
-                            <div class="link">
-                                <a href="#">Forgot password?</a> or
-                                <a href="/auth/signup">SignUp</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- main css & js file link -->
+    <link rel="stylesheet" href="/static/css/auth.css"/>
+</head>
+<body>
+<script type="text/javascript" src="/static/js/main.js"></script>
+<div class="login-container">
+    <h1 class="project-title">Movie<span>26</span></h1>
+    <div class="login-div">
+        <div class="logo">
+            <div class="wave"></div>
+            <div class="wave -two"></div>
+            <div class="wave -three"></div>
+
+            <svg
+                    viewBox="0 0 1581 1581"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M1581 269.655C1581 769.681 262.534 1321.6 162.698 1321.6C106.725 1321.6 43.219 1298.01 43.219 1203.67C43.219 1172.15 63.1184 1126.59 98.0373 1071.67L97.9985 1071.7L5.44804 771.055C-7.08371 730.353 2.85179 678.787 26.5668 661.425L42.4724 649.782C71.2998 628.68 103.744 631.826 131.187 658.383L299.204 821.006C364.622 750.066 438.831 675.792 517.046 602.666L189.622 214.297C163.719 183.569 163.995 114.074 190.141 84.0451L216.925 53.2793C261.503 2.07706 315.696 -13.046 366.598 11.4995L911.294 274.175C1081.13 150.932 1234.68 66.8155 1325.57 66.8155C1349.84 66.8155 1374.15 67.9916 1397.61 71.0568L1233.11 206.82L1229.18 307.978L1483.09 94.5774C1543.96 121.116 1581 170.646 1581 269.655ZM918.354 1132.81L1121.53 1554.78C1133.91 1580.5 1154.08 1588.24 1171.07 1573.8L1198.28 1550.67C1247.9 1508.51 1277.12 1412.89 1270.77 1313.54L1245.33 915.925C1243.76 891.322 1230.1 875.751 1217.32 883.978L927.192 1070.83C913.071 1079.93 908.457 1112.26 918.354 1132.81Z"
+                        fill="#3D3D3D"
+                />
+            </svg>
+        </div>
+        <div class="title">Hello 👋</div>
+        <div class="sub-title">welcome, movie 26</div>
+        <div class="fields">
+            <div class="username">
+                <svg class="svg-icon" viewBox="0 0 20 20">
+                    <path
+                            d="M12.075,10.812c1.358-0.853,2.242-2.507,2.242-4.037c0-2.181-1.795-4.618-4.198-4.618S5.921,4.594,5.921,6.775c0,1.53,0.884,3.185,2.242,4.037c-3.222,0.865-5.6,3.807-5.6,7.298c0,0.23,0.189,0.42,0.42,0.42h14.273c0.23,0,0.42-0.189,0.42-0.42C17.676,14.619,15.297,11.677,12.075,10.812 M6.761,6.775c0-2.162,1.773-3.778,3.358-3.778s3.359,1.616,3.359,3.778c0,2.162-1.774,3.778-3.359,3.778S6.761,8.937,6.761,6.775 M3.415,17.69c0.218-3.51,3.142-6.297,6.704-6.297c3.562,0,6.486,2.787,6.705,6.297H3.415z"
+                    ></path>
+                </svg>
+                <input
+                        id="input-username"
+                        type="text"
+                        class="user-input"
+                        placeholder="아이디"
+                        name="username"
+                        required
+                />
+            </div>
+            <div class="password">
+                <svg class="svg-icon" viewBox="0 0 20 20">
+                    <path
+                            d="M17.308,7.564h-1.993c0-2.929-2.385-5.314-5.314-5.314S4.686,4.635,4.686,7.564H2.693c-0.244,0-0.443,0.2-0.443,0.443v9.3c0,0.243,0.199,0.442,0.443,0.442h14.615c0.243,0,0.442-0.199,0.442-0.442v-9.3C17.75,7.764,17.551,7.564,17.308,7.564 M10,3.136c2.442,0,4.43,1.986,4.43,4.428H5.571C5.571,5.122,7.558,3.136,10,3.136 M16.865,16.864H3.136V8.45h13.729V16.864z M10,10.664c-0.854,0-1.55,0.696-1.55,1.551c0,0.699,0.467,1.292,1.107,1.485v0.95c0,0.243,0.2,0.442,0.443,0.442s0.443-0.199,0.443-0.442V13.7c0.64-0.193,1.106-0.786,1.106-1.485C11.55,11.36,10.854,10.664,10,10.664 M10,12.878c-0.366,0-0.664-0.298-0.664-0.663c0-0.366,0.298-0.665,0.664-0.665c0.365,0,0.664,0.299,0.664,0.665C10.664,12.58,10.365,12.878,10,12.878"
+                    ></path>
+                </svg>
+                <input
+                        id="input-password"
+                        type="password"
+                        name="password"
+                        class="pass-input"
+                        placeholder="비밀번호"
+                        required
+                />
+            </div>
+            <button onclick="log_in()" class="login-button">
+                로그인
+            </button>
+            <div class="link">
+                <a href="#">Forgot password?</a> or
+                <a href="/auth/signup">SignUp</a>
             </div>
         </div>
-    </body>
+    </div>
+</div>
+</div>
+</div>
+</body>
 </html>

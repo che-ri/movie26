@@ -30,6 +30,12 @@ function log_in() {
     });
 }
 
+function logout() {
+    console.log("hi");
+    $.cookie("mytoken", null, { path: "/" });
+    window.location.replace("/auth/login");
+}
+
 function sign_up() {
     const username = $("#input-username").val();
     const email = $("#input-email").val();
@@ -93,44 +99,20 @@ function get_movies() {
                     const booking = movie["booking"];
 
                     const temp_html = `
-                            <div class="card" style="width: 18rem">
+                    <div class="card" >
                         <img
                             class="card-img-top"
                             src="${poster}"
                             alt="Card image cap"
                         />
-                        <div style="margin-left: 10px" class="card-body">
-                            <span style="font-size: 20px" class="card-title"
-                                >${title}</span
-                            >
-                            <span
-                                style="display: block; font-size: 10px"
-                                class="card-title"
-                                >장르: ${genre}</span
-                            >
-                            <span
-                                style="
-                                    font-size: 13px;
-                                    display: block;
-                                    margin: 5px 0 0 0;
-                                "
-                                class="card-text"
-                                >감독: ${producer}</span
-                            >
-                            <span
-                                style="font-size: 12px; display: block"
-                                class="card-title"
-                                >예매율: ${booking}%</span
-                            >
+                        <h5 class="card-title">${title}</h5>
+                        <div class="card-body">
+                            <div class="card-info"
+                            <span>장르: ${genre}</span>
+                            <span>감독: ${producer}</span>
+                            <span>예매율: ${booking}%</span>
+                            </div>
                             <a
-                                style="
-                                    display: block;
-                                    text-align: end;
-                                    margin-right: 20px;
-                                    color: inherit;
-                                    font-weight: 700;
-                                    height: 35px;
-                                "
                                 href="/movie/${movie_id}"
                                 class="btn btn-primary"
                                 >상세보기</a
@@ -210,4 +192,42 @@ function delete_comment(e) {
             }
         },
     });
+}
+
+function like_movie() {
+    const re = /[0-9]/;
+    const url = window.location.pathname;
+    const movie_id = re.exec(url)[0];
+
+    const a_like = $(`#jsLike`);
+    if (a_like.hasClass("like")) {
+        console.log("있다");
+        $.ajax({
+            type: "POST",
+            url: `/movie/${movie_id}/like`,
+            data: {
+                action_give: "like",
+            },
+            success: function (response) {
+                const count = response["count"];
+
+                const html_temp = `<span id="like-count">${count}</span>`;
+                $("#like-count").text(count);
+            },
+        });
+    } else {
+        console.log("없다");
+        $.ajax({
+            type: "POST",
+            url: `/movie/${movie_id}/like`,
+            data: {
+                action_give: "unlike",
+            },
+            success: function (response) {
+                const count = response["count"];
+                const html_temp = `<span>${count}</span>`;
+                $("#like-count").text(count);
+            },
+        });
+    }
 }

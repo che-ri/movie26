@@ -1,104 +1,187 @@
-* {
-    box-sizing: border-box;
+@font-face {
+    font-family: "SEBANG_Gothic_Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
+@font-face {
+    font-family: "GmarketSansMedium";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    font-family: "Lato", sans-serif;
+    font-family: "GmarketSansMedium";
     font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #555;
-    background-color: #ecf0f3;
+    color: var(--black);
+}
+
+.login-container {
+    width: 350px;
+    height: 100vh;
+    margin: auto;
 }
 
 .login-div {
-    width: 300px;
-    height: 550px;
-    padding: 60px 35px 35px 35px;
+    width: 350px;
+    padding: 70px 50px 90px 50px;
     border-radius: 40px;
     background-color: #ecf0f3;
     box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+    margin-bottom: 50px;
 }
 
 .logo {
-    background: url(/static/img/logo4.png);
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
+    background: linear-gradient(white 30%, var(--gray) 60%, var(--green));
     margin: 0 auto;
     box-shadow: 0px 0px 2px #5f5f5f, 0px 0px 0px 5px #ecf0f3,
-        8px 8px 15px #a7aaaf, -8px -8px 15px #fff;
+    8px 8px 15px #a7aaaf, -8px -8px 15px #fff;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.logo svg {
+    width: 50px;
+    height: 50px;
+    z-index: 5;
+}
+
+.logo svg path {
+    fill: var(--black);
+}
+
+.wave {
+    opacity: .4;
+    position: absolute;
+    bottom: -83%;
+    background: var(--green);
+    width: 170px;
+    height: 119px;
+    transform-origin: 50% 48%;
+    border-radius: 43%;
+    animation: drift 5s infinite linear;
+}
+
+.wave.-three {
+    animation: drift 7s infinite linear;
+}
+
+.wave.-two {
+    animation: drift 9s infinite linear;
+    opacity: .1;
+    background: yellow;
+}
+
+@keyframes drift {
+    from {
+        transform: rotate(0deg);
+    }
+    from {
+        transform: rotate(360deg);
+    }
 }
 
 .title {
+    font-family: "SEBANG_Gothic_Bold";
     text-align: center;
     font-size: 28px;
-    padding-top: 24px;
     letter-spacing: 0.5px;
+    margin-bottom: 10px;
 }
 
 .sub-title {
     text-align: center;
     font-size: 15px;
-    padding-top: 7px;
-    letter-spacing: 3px;
+}
+
+
+.project-title {
+    font-family: "SEBANG_Gothic_Bold";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin: 30px 0;
+}
+
+.project-title span {
+    animation: brightLogo 1s infinite;
+}
+
+@keyframes brightLogo {
+    0% {
+        color: var(--gray)
+    }
+    50% {
+        color: var(--green)
+    }
+    100% {
+        color: var(--gray)
+    }
 }
 
 .fields {
     width: 100%;
-    padding: 25px 5px 5px 5px;
+    margin-top: 30px;
 }
 
 .fields input {
     border: none;
     outline: none;
     background: none;
-    /* font-size: 15px; */
-    color: #555;
     padding: 10px 0px;
 }
 
 .username,
 .password,
 .conf-password {
+    display: flex;
+    align-items: center;
     margin-bottom: 30px;
     border-radius: 25px;
     box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    height: 45px;
+
 }
 
 .fields svg {
     height: 22px;
-    margin: 0px 10px -3px 25px;
+    margin: 0px 10px 0 25px;
 }
 
 .login-button {
-    outline: none;
     border: none;
     cursor: pointer;
     width: 100%;
-    height: 30px;
+    height: 45px;
+    margin-bottom: 30px;
     border-radius: 30px;
     font-size: 20px;
     font-weight: 700;
     font-family: "Lato", sans-serif;
     color: #fff;
     text-align: center;
-    background-color: #02c8db;
-    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px -8px #fff;
-    transition: all 0.5s;
-    outline: 0 none;
-}
-.login-button:focus {
-    outline: 0;
+    background-color: var(--gray);
+    transition: all 0.2s;
+    box-shadow: 0 5px 5px #cbced1, -1px -1px 1px #fff;
 }
 
 .login-button:hover {
-    background-color: #50e5b9;
+    background-color: var(--green);
+    transform: translateY(0.2px);
 }
 
 .login-button:active {
@@ -106,7 +189,6 @@ body {
 }
 
 .link {
-    padding-top: 20px;
     text-align: center;
     align-items: center;
 }
@@ -117,13 +199,8 @@ body {
     font-size: 13px;
 }
 
-.project-title {
-    color: #555;
-    font-family: "Nato", sans-serif;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
+.link a:hover {
+    color: var(--green)
 }
 
 .login-link {
@@ -136,4 +213,34 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s;
     -webkit-text-fill-color: #555 !important;
+}
+
+@media (min-width: 601px) {
+    .login-container {
+        width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-div {
+        margin: 30px 0;
+    }
+
+    .project-title {
+        margin-right: 50px;
+        font-size: 3rem;
+
+    }
+
+}
+
+@media (min-width: 1001px) {
+    .login-container {
+        width: 1000px;
+
+    }
+    .project-title {
+        margin-right: 50px;
+    }
 }
