@@ -237,8 +237,12 @@
 
 .detail__review .reviews .review li {
     margin: 10px 0;
+    width: 90%
 }
 
+.detail__review .reviews .review li span{
+    word-break: break-all;
+}
 
 
 .detail__review .reviews .review button {
