@@ -6,7 +6,7 @@ Movie 26가 제공하는 26개의 영화 리스트로 영화 트랜드를 확인
 
 <br/>
 
-![썸네일](static\img\ogImage_movie26.png "movie26_thumb")
+![썸네일](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FkD438%2Fbtq6W17sbmI%2FFsMNxOGMGq8HeDz3Yv2EFk%2Fimg.png "movie26_thumb")
 
 링크
 ([Movie26](http://movie26.shop/ "무비평점서비스"))
@@ -21,7 +21,7 @@ Movie 26가 제공하는 26개의 영화 리스트로 영화 트랜드를 확인
 
 ## 🎨 프로젝트 초안
 
-![디자인](static\img\Movie26_Design.png "movie26_thumb")
+![디자인](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcobrHB%2Fbtq60IS5LAV%2FIZCUGglheA826xIuj02Wpk%2Fimg.png "movie26_thumb")
 <br/>
 <br/>
 
